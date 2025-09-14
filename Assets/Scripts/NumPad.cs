@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class NumPad : MonoBehaviour
 {
-    public string[] correctSequence = { "1", "2", "3", "4" }; 
-    public Transform keycardSpawnLocation; 
-    public GameObject keycardPrefab; 
-    public DisplayCode displayCode; 
+    public string[] correctSequence = { "1", "2", "3", "4" };
+    public Transform keycardSpawnLocation;
+    public GameObject keycardPrefab;
+    public DisplayCode displayCode;
 
-    private string enteredNumber = ""; 
+    private string enteredNumber = "";
 
- 
+
     private void UpdateCodeDisplay()
     {
         displayCode.UpdateCode(enteredNumber);
@@ -20,8 +20,8 @@ public class NumPad : MonoBehaviour
 
     public void PressButton(string buttonValue)
     {
-        enteredNumber += buttonValue; 
-        UpdateCodeDisplay(); 
+        enteredNumber += buttonValue;
+        UpdateCodeDisplay();
 
         if (enteredNumber.Length == correctSequence.Length)
         {
@@ -34,7 +34,7 @@ public class NumPad : MonoBehaviour
         bool sequenceCorrect = true;
         for (int i = 0; i < correctSequence.Length; i++)
         {
-            if (enteredNumber[i] != correctSequence[i][0]) 
+            if (enteredNumber[i] != correctSequence[i][0])
             {
                 sequenceCorrect = false;
                 break;
@@ -43,16 +43,15 @@ public class NumPad : MonoBehaviour
 
         if (sequenceCorrect)
         {
-         
+
             Debug.Log("keycard spawned");
 
         }
         else
         {
-           
+
             enteredNumber = "";
-            UpdateCodeDisplay(); 
+            UpdateCodeDisplay();
         }
     }
 }
-

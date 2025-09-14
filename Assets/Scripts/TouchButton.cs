@@ -3,18 +3,18 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class TouchButton : XRBaseInteractable
 {
-    public int buttonNumber; 
-    public Material touchedMaterial; 
-    private Material normalMaterial; 
-    private Renderer buttonRenderer; 
-    private Keypad keypad; 
+    public int buttonNumber;
+    public Material touchedMaterial;
+    private Material normalMaterial;
+    private Renderer buttonRenderer;
+    private Keypad keypad;
 
     protected override void Awake()
     {
         base.Awake();
         buttonRenderer = GetComponent<Renderer>();
         normalMaterial = buttonRenderer.material;
-        keypad = GetComponentInParent<Keypad>(); 
+        keypad = GetComponentInParent<Keypad>();
     }
 
     protected override void OnHoverEntered(HoverEnterEventArgs args)
@@ -23,7 +23,7 @@ public class TouchButton : XRBaseInteractable
         buttonRenderer.material = touchedMaterial;
         if (keypad != null)
         {
-            keypad.ButtonHovered(buttonNumber); 
+            keypad.ButtonHovered(buttonNumber);
         }
     }
 
@@ -35,10 +35,10 @@ public class TouchButton : XRBaseInteractable
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         base.OnSelectEntered(args);
-        Debug.Log(buttonNumber + " pressed"); 
+        Debug.Log(buttonNumber + " pressed");
         if (keypad != null)
         {
-            keypad.ButtonPressed(buttonNumber); 
+            keypad.ButtonPressed(buttonNumber);
         }
     }
 }
