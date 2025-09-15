@@ -1059,6 +1059,7 @@ MonoBehaviour:
   minSwipeDistance: 0.1
   doorLock: {fileID: 984865152}
   doorBar: {fileID: 984865152}
+  slidingDoor: {fileID: 1550825634}
 --- !u!4 &229416602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3834652060116321005, guid: 00592b75c913c8440b1b1229fb990ab9,
@@ -1388,13 +1389,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1550825632}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &304389972 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2566907168132976773, guid: 505ab3b2ca9f8d943940d674d65aac07,
-    type: 3}
-  m_PrefabInstance: {fileID: 1550825632}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &304389977
+--- !u!114 &304389973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4748,7 +4743,7 @@ Transform:
   m_GameObject: {fileID: 741903838}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.148, y: 0, z: 0}
+  m_LocalPosition: {x: 0.489, y: 1.596, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9477,7 +9472,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1109045558226980100, guid: 505ab3b2ca9f8d943940d674d65aac07,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 304389977}
+      addedObject: {fileID: 304389973}
   m_SourcePrefab: {fileID: 100100000, guid: 505ab3b2ca9f8d943940d674d65aac07, type: 3}
 --- !u!4 &1550825633 stripped
 Transform:
@@ -9497,12 +9492,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fef3b8847e4014280da38396db1817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Door: {fileID: 298798252}
-  DoorHandle: {fileID: 304389972}
-  LocalSlideDirection: {x: 1, y: 0, z: 0}
-  MaxSlideDistance: 1.5
+  doorTransform: {fileID: 298798252}
+  DoorHandle: {fileID: 304389973}
+  LocalSlideDirection: {x: -1, y: 0, z: 0}
+  MaxSlideDistance: 5
   SlideDamping: 10
-  IsLocked: 0
+  IsLocked: 1
 --- !u!1001 &1569619000
 PrefabInstance:
   m_ObjectHideFlags: 0
