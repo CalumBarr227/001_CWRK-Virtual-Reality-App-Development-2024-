@@ -38,6 +38,12 @@ public class NumPad : MonoBehaviour
         if (sequenceCorrect)
         {
             Debug.Log("correct code, keycard spawned");
+            if (keycardPrefab != null && keycardSpawnLocation != null)
+            {
+                Instantiate(keycardPrefab,
+                            keycardSpawnLocation.position,
+                            keycardSpawnLocation.rotation);
+            }
         }
         else
         {
