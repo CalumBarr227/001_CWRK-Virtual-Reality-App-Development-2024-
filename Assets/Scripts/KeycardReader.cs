@@ -10,6 +10,7 @@ public class KeycardReader : MonoBehaviour
     public GameObject doorLock;
     public GameObject doorBar;
     private bool swipeSuccessful = false;
+    public Door slidingDoor;
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -32,6 +33,9 @@ public class KeycardReader : MonoBehaviour
 
         if (doorBar != null)
             doorBar.SetActive(false);
+
+        if (slidingDoor != null)
+            slidingDoor.UnlockDoor();
 
         Debug.Log("door unlocked");
     }

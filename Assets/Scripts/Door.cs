@@ -1,48 +1,78 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Door : XRBaseInteractable
+public class Door : MonoBehaviour
 {
+    public Transform doorTransform;
+    public XRSimpleInteractable DoorHandle;
+    public Vector3 LocalSlideDirection = Vector3.right;
+    public float MaxSlideDistance = 1.5f;
+    public float SlideDamping = 10f;
+    public bool IsLocked = true;
+    private Vector3 startLocalPos;
+    private Vector3 worldSlideDir;
+    private bool isBeingGrabbed = false;
+    private Transform grabbingHand;
+    private Vector3 handleStartOffset;
+    private Vector3 grabStartHandPos;
 
-    public Transform DraggedTransform; 
-    public Vector3 LocalDragDirection; 
-    public float DragDistance; 
-    public int DoorWeight = 20;
-
-   
-    private Vector3 m_StartPosition;
-    private Vector3 m_EndPosition;
-    private Vector3 m_WorldDragDirection;
-
-
-    private void Start()
+    void Start()
     {
-        m_WorldDragDirection = transform.TransformDirection(LocalDragDirection).normalized;
+        startLocalPos = doorTransform.localPosition;
+        worldSlideDir = transform.TransformDirection(LocalSlideDirection).normalized;
 
-        m_StartPosition = DraggedTransform.position;
-        m_EndPosition = m_StartPosition + m_WorldDragDirection * DragDistance;
+        // Store initial offset of handle relative to the door
+        handleStartOffset = DoorHandle.transform.position - doorTransform.position;
+
+        DoorHandle.onSelectEntered.AddListener(OnHandleGrabbed);
+        DoorHandle.onSelectExited.AddListener(OnHandleReleased);
+
+        DoorHandle.enabled = !IsLocked;
     }
 
-    
-    public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase)
+    void Update()
     {
-        if (isSelected && interactorsSelecting.Count > 0)
+        if (IsLocked) return;
+        if (isBeingGrabbed && grabbingHand != null)
         {
-            var interactorTransform = interactorsSelecting[0].transform;
-            Vector3 selfToInteractor = interactorTransform.position - transform.position;
+            Vector3 handDelta = grabbingHand.position - grabStartHandPos;
+            float slideAmount = Vector3.Dot(handDelta, worldSlideDir);
+            slideAmount = Mathf.Clamp(slideAmount, 0f, MaxSlideDistance);
 
-            
-            float dotProduct = Vector3.Dot(selfToInteractor.normalized, m_WorldDragDirection);
-
-            
-            float speed = Mathf.Abs(dotProduct) * DoorWeight;
-
-            
-            float distance = Mathf.Clamp(dotProduct, 0f, DragDistance);
-            Vector3 newPosition = m_StartPosition + m_WorldDragDirection * distance;
-            DraggedTransform.position = Vector3.MoveTowards(DraggedTransform.position, newPosition, speed * Time.deltaTime);
+            Vector3 targetPos = startLocalPos + LocalSlideDirection.normalized * slideAmount;
+            doorTransform.localPosition = Vector3.Lerp(doorTransform.localPosition, targetPos, Time.deltaTime * SlideDamping);
         }
+
+        DoorHandle.transform.position = doorTransform.position + handleStartOffset;
+
     }
 
+    private void OnHandleGrabbed(XRBaseInteractor interactor)
+    {
+        if (IsLocked) return;
 
+        isBeingGrabbed = true;
+        grabbingHand = interactor.attachTransform != null ? interactor.attachTransform : interactor.transform;
+
+        handleStartOffset = DoorHandle.transform.position - doorTransform.position;
+    }
+
+    private void OnHandleReleased(XRBaseInteractor interactor)
+    {
+        isBeingGrabbed = false;
+        grabbingHand = null;
+    }
+
+    public void UnlockDoor()
+    {
+        IsLocked = false;
+        DoorHandle.enabled = true;
+    }
+
+    public void LockDoor()
+    {
+        IsLocked = true;
+        doorTransform.localPosition = startLocalPos;
+        DoorHandle.enabled = false;
+    }
 }
