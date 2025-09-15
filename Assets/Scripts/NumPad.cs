@@ -9,19 +9,12 @@ public class NumPad : MonoBehaviour
     public Transform keycardSpawnLocation;
     public GameObject keycardPrefab;
     public DisplayCode displayCode;
-
     private string enteredNumber = "";
-
-
-    private void UpdateCodeDisplay()
-    {
-        displayCode.UpdateCode(enteredNumber);
-    }
 
     public void PressButton(string buttonValue)
     {
         enteredNumber += buttonValue;
-        UpdateCodeDisplay();
+        displayCode.UpdateCode(enteredNumber);
 
         if (enteredNumber.Length == correctSequence.Length)
         {
@@ -32,6 +25,7 @@ public class NumPad : MonoBehaviour
     private void CheckSequence()
     {
         bool sequenceCorrect = true;
+
         for (int i = 0; i < correctSequence.Length; i++)
         {
             if (enteredNumber[i] != correctSequence[i][0])
@@ -43,15 +37,12 @@ public class NumPad : MonoBehaviour
 
         if (sequenceCorrect)
         {
-
-            Debug.Log("keycard spawned");
-
+            Debug.Log("correct code, keycard spawned");
         }
         else
         {
-
             enteredNumber = "";
-            UpdateCodeDisplay();
+            displayCode.ResetDisplay();
         }
     }
 }
