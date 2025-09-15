@@ -19,14 +19,37 @@ The project required me to use the **XR Interaction Toolkit** along with custom 
 - **Attach Objects**: Snap objects into sockets, for example hang hats or art on hooks
 - **Rearrangement** Move objects around and swap positions of wall art
 
-### 3. Custom VR Devices & Interactions
-**VR Scanner**
+## 3. Custom VR Devices & Interactions
+### VR Scanner
 - Open/closes screen when picked up and put down
 - Activates laser when trigger is pressed
 - Displays name and position of targeted objects
 
-**Automatic Check-In System**
-VR Number Pad
+### Automatic Check-In System
+**VR Number Pad**
 - Buttons change colour when touched or hovered over
 - Displays entered code sequence on screen next to keypad
 - Correct code spawns a keycard, incorrect input resets the keypad
+
+**VR Keycard Reader**
+- Swipe keycard through reader to unlock door
+- Requires minimum swipe distance for success
+
+**VR Sliding Door**
+- Only movable after keycard unlocks door
+- Heavy door movement
+
+## Controls & Interaction Guide
+- **Teleportation**: Point to circular carpets to teleport to desired area
+- **Grab/Pick Up**: Use grab button to interact with objects
+- **Throw**: Release object while moving controller
+- **Attach/Rearrange**: Place objects in sockets or swap wall art
+- **Check-In System**:
+  - Enter code on number pad
+  - Swipe keycard through reader
+  - Slide door to open and close
+
+## Development Notes
+- Custom VR interactions implemented via **C# scripts** using XR Interaction Toolkit API
+- Environment and furniture built using given prefab from labs and free Unity assets
+- Developed as part of the **Mixed Reality Development module** at university
