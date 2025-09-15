@@ -26,7 +26,7 @@ The project required me to use the **XR Interaction Toolkit** along with custom 
 - Displays name and position of targeted objects
 
 **Automatic Check-In System**
-#### VR Number Pad
+VR Number Pad
 - Buttons change colour when touched or hovered over
 - Displays entered code sequence on screen next to keypad
 - Correct code spawns a keycard, incorrect input resets the keypad
