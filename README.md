@@ -1,5 +1,5 @@
 # VR Hotel Reception Hall - Mixed Reality Development Module
-This project was developed as part of the **Mixed Reality Development** module at university. It is a fully interactive **VR hotel reception hall** built in **Unity** for the **Meta Quest**.
+This project was developed as part of the **Mixed Reality Development** module at university. It is a fully interactive **VR hotel reception hall** built in **Unity** for the **Oculus Quest 2**.
 
 Users can explore the hall, interact with furniture and decorations, experience the automatic check-in system through the use of VR mechanics.
 
