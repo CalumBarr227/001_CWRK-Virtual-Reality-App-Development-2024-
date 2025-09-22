@@ -53,3 +53,10 @@ The project required me to use the **XR Interaction Toolkit** along with custom 
 - Custom VR interactions implemented via **C# scripts** using XR Interaction Toolkit API
 - Environment and furniture built using given prefab from labs and free Unity assets
 - Developed as part of the **Mixed Reality Development module** at university
+
+## Key Takeaways
+- Gained hands on experience with Unity and Unity's XR Interaction Toolkit
+- Built custom VR interactions with C# scripts
+- Learned to balance realism and usability in VR mechanics
+- Improved skills in iterative testing and VR user experience design
+- Developed modualr and reusable C# scripts for scalable VR interactions
